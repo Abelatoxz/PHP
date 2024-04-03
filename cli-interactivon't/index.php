@@ -29,9 +29,11 @@ $usuario = json_decode($json, true);
 $id = $usuario['id_user'];
 
 
-$options = getopt("it:d:mcn:bn:cn:");
+$options = getopt("it:d:mcn:bn:cn:h");
 
-
+if (isset($options['h'])) {
+  print("php index.php -m = muestra la tarea \nphp index.php -i = opcion de incertar -t = titulo -d = descripcion \nphp index.php -c = completa -n = El numero de la tarea \nphp index.php -b = borrar -n = El numero de la tarea");
+}
 if (isset($options['i'], $options['t'], $options['d'])) {
     $titulo = $options['t'];
     $desc = $options['d'];
@@ -47,10 +49,8 @@ if (isset($options['c'])) {
 }
 if (isset($options['b'])) {
   $tarea = $options['n'];
-  borrar($conn,$id,$tarea);
+  $mensaje =  borrar($conn,$id,$tarea);
+  echo $mensaje;
 }
-if (isset($options['c']))
-  $id = $options['n'];
-  completa($conn,$id,$id)
 ?>
 

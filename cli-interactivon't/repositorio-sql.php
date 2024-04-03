@@ -69,7 +69,8 @@ function mostrar($conn,$so){
 function completa($conn,$id,$n1){
 $sql = "UPDATE tasks set status = 'completed' where task_id = '$n1' and user_id = '$id'";
 if (mysqli_query($conn,$sql)) {
-  echo "Se completo la tarea";
+  $lenguaje = "Se completo la tarea";
+  return $lenguaje;
 }else {
   echo "Fallo";
 }
