@@ -30,7 +30,10 @@ $id = $usuario['id_user'];
 
 
 $options = getopt("it:d:mcn:bn:cn:h");
+if ($options == NULL) {
 
+  print("php index.php -m = muestra la tarea \nphp index.php -i = opcion de incertar -t = titulo -d = descripcion \nphp index.php -c = completa -n = El numero de la tarea \nphp index.php -b = borrar -n = El numero de la tarea");
+}
 if (isset($options['h'])) {
   print("php index.php -m = muestra la tarea \nphp index.php -i = opcion de incertar -t = titulo -d = descripcion \nphp index.php -c = completa -n = El numero de la tarea \nphp index.php -b = borrar -n = El numero de la tarea");
 }
