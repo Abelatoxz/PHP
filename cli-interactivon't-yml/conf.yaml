@@ -1,2 +1,18 @@
-#pon el metodo de almacenar: ejmplos, sqlite,csv,txt
-almacenar: csv
+# This is a YAML configuration file
+# Comments start with a hash (#) symbol
+
+# csv|json|sqlite|sql
+storage-type: sql
+database: 
+  # IP Address or hostname
+  host: 127.0.0.1
+  # Database name
+  # Database username
+  user: taskmanager
+  # String
+  password: password
+  # defaults to 3306
+  name: taskdb
+
+  port: 3306
+

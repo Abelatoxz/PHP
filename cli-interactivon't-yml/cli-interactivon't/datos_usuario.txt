@@ -1,0 +1,1 @@
+{"id_user":"1","name":"abel","surname1":"zverev","email":"abelatoxz@gmail.com","password":"$2y$10$B4CCBvCJWERueqrhakPY\/ePn7oeka0NIJi.q52nDJjd02Vx2eUwWq","enable":"1"}
