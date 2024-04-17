@@ -1,4 +1,2 @@
-almacenar:
-  sql:
-  csv:
-  txt:
+#pon el metodo de almacenar: ejmplos, sqlite,csv,txt
+almacenar: csv
