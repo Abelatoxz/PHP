@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  app:
+    image: abelatoxz/php-proyecto-composer
+    ports:
+      - "2020:80"
+    volumes:
+      - ./:/var/www/html
+

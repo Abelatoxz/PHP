@@ -1,0 +1,19 @@
+{
+    "name": "abel/php",
+    "description": "Este proyecto es para colocar un yml en mi proyecto de php",
+    "require": {
+        "symfony/yaml": "^5.0",
+        "symfony/console": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Abel\\Php\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abel Zverev",
+            "email": "abelatoxz@gmail.com"
+        }
+    ]
+}
