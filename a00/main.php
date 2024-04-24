@@ -2,12 +2,16 @@
 include './repositorio-sql.php';
 if (PHP_SAPI != 'cli') {
   echo "Este script debe ejecutarse desde la línea de comandos (CLI).";
-  exit(1);
+  return false;
 }
 
 $conn = getOpenCon();
-var_dump($user = login($conn));
-
+$user = login($conn);
+var_dump($user);
+if (is_string($user)) {
+  echo $user, "\n";
+  return false;
+}
 $n2 = true;
 while ($n2) {
   //echo chr(27) . chr(91) . 'H' . chr(27) . chr(91) . 'J';
@@ -26,6 +30,7 @@ while ($n2) {
       $desc = readline("Descripcion de la tarea: ");
       $msg = insertarTarea($conn, $user, $titulo, $desc);
       echo $msg;
+      sleep(5);
       break;
     case '2':
       mostrarTareas($conn, $user);
@@ -33,11 +38,21 @@ while ($n2) {
       break;
     case '3':
       $id_tarea = readline("Id de la tarea: ");
-      borrarTarea($conn, $user, $id_tarea);
+      if (intval($id_tarea)) {
+        borrarTarea($conn, $user, $id_tarea);
+      } else {
+        echo "No se puede usar letras, solo enteros\n";
+      }
+      sleep(5);
       break;
     case '4':
       $id_tarea = readline("Id de la tarea: ");
-      completaTarea($conn, $user, $id_tarea);
+      if (intval($id_tarea)) {
+        completaTarea($conn, $user, $id_tarea);
+      } else {
+        echo "No se puede usar letras, solo enteros\n";
+        sleep(5);
+      }
       break;
     default:
       $n2 = false;

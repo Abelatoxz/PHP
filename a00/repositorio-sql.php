@@ -12,18 +12,18 @@ function login($conn)
   $name = readline("Dime tu usuario: ");
   $pass = readline("Dame tu contraseña: ");
   if ($name == "" || $pass == "") {
-    $msg = "Los campos estan vacíos.";
-    return $msg;
-  }
-  $sql = "SELECT * FROM users WHERE name = '$name'";
-  $query = mysqli_query($conn, $sql);
-  $user = mysqli_fetch_assoc($query);
-  if ($user && password_verify($pass, $user['password'])) {
-    $user = $user;
+    $user =  false;
   } else {
-    $user = "Contraseña invalida o usuario invalidos";
+    $sql = "SELECT * FROM users WHERE name = '$name'";
+    $query = mysqli_query($conn, $sql);
+    $user = mysqli_fetch_assoc($query);
+    if ($user && password_verify($pass, $user['password'])) {
+      $user = $user;
+    } else {
+      $user = "Contraseña invalida o usuario invalidos";
+    }
+    return $user;
   }
-  return $user;
 }
 
 //Funcion para mostrar tareas
@@ -34,7 +34,7 @@ function mostrarTareas($conn, $user)
   $sql = "SELECT * FROM tasks WHERE user_id = '$id_user'";
   $query = mysqli_query($conn, $sql);
   while ($row = mysqli_fetch_assoc($query)) {
-    echo "\nID: ", $row['task_id'], " - Título: ", $row['task_name'], " - Estado: ", $row['status'];
+    echo "\nID: ", $row['task_id'], " - Título: ", $row['task_name'], " - Descripcion: ", $row['description'], " - Estado: ", $row['status'];
   }
 }
 //Funcion para borrar tareas
