@@ -10,7 +10,7 @@ var_dump($user = login($conn));
 
 $n2 = true;
 while ($n2) {
-  echo chr(27) . chr(91) . 'H' . chr(27) . chr(91) . 'J';
+  //echo chr(27) . chr(91) . 'H' . chr(27) . chr(91) . 'J';
   echo "Opción 0: Salir del Task-Management\n";
   echo "Opción 1: Insertar Tarea\n";
   echo "Opción 2: Ver Tareas\n";

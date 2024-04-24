@@ -15,7 +15,7 @@ function login($conn)
     $msg = "Los campos estan vacíos.";
     return $msg;
   }
-  $sql = "SELECT * FROM users WHERE name = $name";
+  $sql = "SELECT * FROM users WHERE name = '$name'";
   $query = mysqli_query($conn, $sql);
   $user = mysqli_fetch_assoc($query);
   if ($user && password_verify($pass, $user['password'])) {
