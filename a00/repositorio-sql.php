@@ -41,7 +41,7 @@ function mostrarTareas($conn, $user)
 function insertarTarea($conn, $user, $titulo, $desc)
 {
   $id_user = $user['id_user'];
-  $sql = "INSERT into tasks (task_name, description, user_id) VALUES ('$titulo','$desc','$id_user')";
+  $sql = "INSERT INTO tasks (task_name, description, user_id) VALUES ('$titulo','$desc','$id_user')";
   if (mysqli_query($conn, $sql)) {
     $msg = "Tarea insertada con exito. ";
   } else {

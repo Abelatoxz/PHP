@@ -24,7 +24,8 @@ while ($n2) {
     case '1':
       $titulo = readline("Titulo de la tarea: ");
       $desc = readline("Descripcion de la tarea: ");
-      insertarTarea($conn, $conn, $titulo, $desc);
+      $msg = insertarTarea($conn, $user, $titulo, $desc);
+      echo $msg;
       break;
     case '2':
       mostrarTareas($conn, $user);
