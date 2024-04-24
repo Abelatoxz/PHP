@@ -7,7 +7,6 @@ if (PHP_SAPI != 'cli') {
 
 $conn = getOpenCon();
 $user = login($conn);
-var_dump($user);
 if (is_string($user)) {
   echo $user, "\n";
   return false;

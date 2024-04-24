@@ -12,7 +12,7 @@ function login($conn)
   $name = readline("Dime tu usuario: ");
   $pass = readline("Dame tu contraseña: ");
   if ($name == "" || $pass == "") {
-    $user =  false;
+    $user =  "Usuario o contraseña vacios";
   } else {
     $sql = "SELECT * FROM users WHERE name = '$name'";
     $query = mysqli_query($conn, $sql);
@@ -22,8 +22,8 @@ function login($conn)
     } else {
       $user = "Contraseña invalida o usuario invalidos";
     }
-    return $user;
   }
+  return $user;
 }
 
 //Funcion para mostrar tareas
