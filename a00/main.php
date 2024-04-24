@@ -6,15 +6,17 @@ if (PHP_SAPI != 'cli') {
 }
 
 $conn = getOpenCon();
-$user = login($conn);
+$name = readline("Dime el usuario: ");
+$pass = readline("Dime la password: ");
+$user = login($conn, $name, $pass);
 if (is_string($user)) {
   echo $user, "\n";
   return false;
 }
-$n2 = true;
-while ($n2) {
-  //echo chr(27) . chr(91) . 'H' . chr(27) . chr(91) . 'J';
-  echo "Opción 0: Salir del Task-Management\n";
+$flag = true;
+while ($flag) {
+  echo chr(27) . chr(91) . 'H' . chr(27) . chr(91) . 'J';
+  echo "\nOpción 0: Salir del Task-Management\n";
   echo "Opción 1: Insertar Tarea\n";
   echo "Opción 2: Ver Tareas\n";
   echo "Opción 3: Borrar Tarea\n";
@@ -22,7 +24,7 @@ while ($n2) {
   $n1 = readline("¿Qué quieres hacer?\n");
   switch ($n1) {
     case '0':
-      $n2 = false;
+      $flag = false;
       break;
     case '1':
       $titulo = readline("Titulo de la tarea: ");
@@ -55,6 +57,7 @@ while ($n2) {
       break;
     default:
       $n2 = false;
+      echo "Saliendo.... ";
       break;
   }
 }

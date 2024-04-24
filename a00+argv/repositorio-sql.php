@@ -7,8 +7,10 @@ function getOpenCon()
   return $conn;
 }
 //Funcion de login preparada anti sqlInjection
-function login($conn, $name, $pass)
+function login($conn)
 {
+  $name = readline("Dime tu usuario: ");
+  $pass = readline("Dame tu contraseña: ");
   if ($name == "" || $pass == "") {
     $user =  "Usuario o contraseña vacios";
   } else {
