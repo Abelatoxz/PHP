@@ -1,18 +1,13 @@
 <?php
-if (PHP_SAPI != 'cli') {
-  return False;
-}
-
 include './repositorio-sql.php';
 $conn = OpenCon();
 
-$user = login($conn);
+var_dump($user = login($conn));
 if ($user == Null) {
-  var_dump($conn);
-  var_dump($user);
   return False;
+  echo "Fallo";
 }
-$n2 = True;
+$n2 = true;
 while ($n2) {
   echo chr(27) . chr(91) . 'H' . chr(27) . chr(91) . 'J';
   echo "Opcion 0: Salir del Task-Management\n";
@@ -23,23 +18,23 @@ while ($n2) {
   $n1 = readline("Que quieres hacer: \n");
   switch ($n1) {
     case '0':
-      $n2 = False;
+      $n2 = false;
       break;
     case '1':
-      $a = insertar($conn, $user);
+      insertar($conn, $user);
       break;
     case '2':
-      $b = mostrar($conn, $user);
+      mostrar($conn, $user);
       sleep(5);
       break;
     case '3':
-      $c = borrar($conn, $user);
+      borrar($conn, $user);
       break;
     case '4':
-      $d = completa($conn, $user);
+      completa($conn, $user);
       break;
     default:
-      $n2 = False;
+      $n2 = false;
       break;
   }
 }
