@@ -7,10 +7,8 @@ function getOpenCon()
   return $conn;
 }
 //Funcion de login preparada anti sqlInjection
-function login($conn)
+function login($conn, $name, $pass)
 {
-  $name = readline("Dime tu usuario: ");
-  $pass = readline("Dame tu contraseña: ");
   if ($name == "" || $pass == "") {
     $user =  "Usuario o contraseña vacios";
   } else {
@@ -29,13 +27,14 @@ function login($conn)
 //Funcion para mostrar tareas
 function mostrarTareas($conn, $user)
 {
-  echo "\nUsuario: ", $user['name'];
+  $Tareas = [];
   $id_user = $user['id_user'];
   $sql = "SELECT * FROM tasks WHERE user_id = '$id_user'";
   $query = mysqli_query($conn, $sql);
   while ($row = mysqli_fetch_assoc($query)) {
-    echo "\nID: ", $row['task_id'], " - Título: ", $row['task_name'], " - Descripcion: ", $row['description'], " - Estado: ", $row['status'];
+    $Tareas[] = array('ID' => $row['task_id'], 'Titulo' => $row['task_name'], 'Descripcion' => $row['description'], 'Estado' => $row['status']);
   }
+  return $Tareas;
 }
 //Funcion para borrar tareas
 function insertarTarea($conn, $user, $titulo, $desc)
