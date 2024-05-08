@@ -56,7 +56,7 @@ switch ($command) {
     $Listas = array(mostrarTareas($conn, $user));
     foreach ($Listas as $vale) {
       foreach ($vale as $elemento) {
-        echo "La id: " . $elemento['ID'] . ", El titulo: " . $elemento['Titulo'] . ", La descripción es: " . $elemento['Descripcion'] . ",  El estado es:  " . $elemento['Estado'] . "\n";
+        echo "La id: " . $elemento['ID'] . "| El titulo: " . $elemento['Titulo'] . " | La descripción es: " . $elemento['Descripcion'] . " |  El estado es:  " . $elemento['Estado'] . "\n";
       }
     }
     echo "\n";
