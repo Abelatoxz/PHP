@@ -106,7 +106,17 @@ if ($storageType == "sqlite") {
     // Establecer el modo de error PDO a excepción
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $sql_users = "CREATE TABLE IF NOT EXISTS users (
+        id_user INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        surname1 VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        enable BOOLEAN DEFAULT true
+    )";
     // Crear la tabla 'tasks' si no existe
+    $conn->exec($sql_users);
+    echo "Tabla 'users' creada con éxito.\n";
     $sql_tasks = "CREATE TABLE IF NOT EXISTS tasks (
         task_id INT AUTO_INCREMENT PRIMARY KEY,
         task_name VARCHAR(255) NOT NULL,
@@ -121,16 +131,6 @@ if ($storageType == "sqlite") {
     echo "Tabla 'tasks' creada con éxito.\n";
 
     // Crear la tabla 'users' si no existe
-    $sql_users = "CREATE TABLE IF NOT EXISTS users (
-        id_user INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        surname1 VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        enable BOOLEAN DEFAULT true
-    )";
-    $conn->exec($sql_users);
-    echo "Tabla 'users' creada con éxito.\n";
 
     // Insertar usuario admin con contraseña encriptada
     $password = password_hash('adminadmin', PASSWORD_DEFAULT);

@@ -1,6 +1,25 @@
 <?php
-include './repositorio-sqli.php';
+require_once 'vendor/autoload.php';
 
+require './repositorio-sqli.php';
+
+use Symfony\Component\Yaml\Yaml;
+
+// Ruta al archivo YAML
+$rutaArchivoYAML = './configuracion.yml';
+
+// Cargar el contenido del archivo YAML
+$contenidoYAML = file_get_contents($rutaArchivoYAML);
+
+// Convertir el contenido YAML a un array asociativo
+$configuracion = Yaml::parse($contenidoYAML);
+$conn = null;
+if ($configuracion['Main']['storage-type'] == "mariadb") {
+  $conn = OpenConSql();
+}
+if ($configuracion['Main']['storage-type'] == "sqlite") {
+  $conn = OpenConSqli();
+}
 // Comprobamos que el script esté siendo ejecutado desde el CLI
 if (php_sapi_name() !== 'cli') {
   echo "Este script sólo puede ser ejecutado desde la línea de comandos (CLI).\n";
@@ -33,8 +52,6 @@ if (empty($options['p'])) {
   echo Ayuda();
   exit(1);
 }
-
-$conn = getOpenCon();
 $user = login($conn, $options['u'], $options['p']);
 
 if (!is_array($user)) {

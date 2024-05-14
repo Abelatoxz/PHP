@@ -1,9 +1,13 @@
 <?php
+include './.config.php';
 include './.config-sqli.php';
-
-function getOpenCon()
+function getOpenConSqli()
 {
-  return OpenCon();
+  return OpenConSqli();
+}
+function getOpenConSql()
+{
+  return OpenConSql();
 }
 
 function login($conn, $name, $pass)

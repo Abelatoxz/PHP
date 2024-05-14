@@ -3,7 +3,7 @@ include './.config.php';
 
 function getOpenCon()
 {
-  return OpenCon();
+  return OpenConSql();
 }
 
 function login($conn, $name, $pass)
