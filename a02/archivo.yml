@@ -1,0 +1,10 @@
+Main:
+  storage-type: sql
+
+MariaDB:
+  host: localhost
+  db: value4
+  user: usuario
+  password: contraseña
+  port: 3306
+
