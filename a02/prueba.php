@@ -16,7 +16,7 @@ $configuracion = Yaml::parse($contenidoYAML);
 // Acceder a los valores del array asociativo
 $storageType = $configuracion['Main']['storage-type'];
 if ($storageType == 'csv') {
-  echo "YIPPII\n";
+  echo "csv\n";
   exit(1);
 }
 $host = $configuracion['MariaDB']['host'];

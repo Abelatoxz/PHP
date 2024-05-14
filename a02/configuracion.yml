@@ -1,0 +1,8 @@
+Main:
+    storage-type: mariadb
+MariaDB:
+    host: 127.0.0.1
+    db: TaskManager
+    user: Abel
+    password: password
+    port: '3306'

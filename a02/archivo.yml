@@ -1,5 +1,5 @@
 Main:
-  storage-type: sql
+  storage-type: csv
 
 MariaDB:
   host: localhost

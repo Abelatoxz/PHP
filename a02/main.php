@@ -1,5 +1,5 @@
 <?php
-include './repositorio-sql.php';
+include './repositorio-sqli.php';
 
 // Comprobamos que el script esté siendo ejecutado desde el CLI
 if (php_sapi_name() !== 'cli') {
