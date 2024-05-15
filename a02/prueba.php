@@ -5,7 +5,7 @@ require_once 'vendor/autoload.php';
 use Symfony\Component\Yaml\Yaml;
 
 // Ruta al archivo YAML
-$rutaArchivoYAML = 'archivo.yml';
+$rutaArchivoYAML = './configuracion.yml';
 
 // Cargar el contenido del archivo YAML
 $contenidoYAML = file_get_contents($rutaArchivoYAML);

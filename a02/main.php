@@ -2,30 +2,34 @@
 require_once 'vendor/autoload.php';
 
 require './repositorio-sqli.php';
+require './instalador-sqli.php';
 
 use Symfony\Component\Yaml\Yaml;
 
-// Ruta al archivo YAML
-$rutaArchivoYAML = './configuracion.yml';
-
-// Cargar el contenido del archivo YAML
-$contenidoYAML = file_get_contents($rutaArchivoYAML);
-
-// Convertir el contenido YAML a un array asociativo
-$configuracion = Yaml::parse($contenidoYAML);
-$conn = null;
-if ($configuracion['Main']['storage-type'] == "mariadb") {
-  $conn = OpenConSql();
-}
-if ($configuracion['Main']['storage-type'] == "sqlite") {
-  $conn = OpenConSqli();
-}
 // Comprobamos que el script esté siendo ejecutado desde el CLI
 if (php_sapi_name() !== 'cli') {
   echo "Este script sólo puede ser ejecutado desde la línea de comandos (CLI).\n";
   exit(1);
 }
+// Ruta al archivo YAML
+$rutaArchivoYAML = './configuracion.yml';
+if (!file_exists($rutaArchivoYAML)) {
+  Instalador();
+}
+// Cargar el contenido del archivo YAML
+$contenidoYAML = file_get_contents($rutaArchivoYAML);
 
+// Convertir el contenido YAML a un array asociativo
+$configuracion = Yaml::parse($contenidoYAML);
+if ($configuracion['Main']['storage-type'] == "mariadb") {
+  $conn = OpenConSql();
+}
+
+
+
+if ($configuracion['Main']['storage-type'] == "sqlite") {
+  $conn = OpenConSqli();
+}
 function Ayuda()
 {
   $Ayuda =  "Uso: php main.php -u [Usuario] -p [Contraseña] -c [comando] -t [título] -d [descripción]\n  Comandos conocidos:\n  -c add: Agregar una nueva tarea\n  -c list: Listar todas las tareas del usuario\n  -c complete: Marcar una tarea como completada\n  -c delete: Eliminar una tarea\n  -c create: Crear un nuevo usuario\n";
@@ -39,6 +43,7 @@ if ($argc < 2 || isset($options['h'])) {
   echo Ayuda();
   exit(1);
 }
+// Validación de la tarea
 if (empty($options['c'])) {
   echo Ayuda();
 
