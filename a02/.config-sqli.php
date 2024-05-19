@@ -1,11 +1,11 @@
 <?php
-function OpenCon()
+//conexion sqlite
+function OpenConSqli()
 {
-  $sqliteFile = './baseDeDatos.sqlite'; // Ruta a tu base de datos SQLite
+  $sqliteFile = './taskdb.sqlite';
 
   try {
     $conn = new PDO('sqlite:' . $sqliteFile);
-    // Habilitar excepciones de PDO
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $conn;
   } catch (PDOException $e) {
@@ -13,4 +13,3 @@ function OpenCon()
     exit(1);
   }
 }
-

@@ -16,7 +16,7 @@ function Instalador()
   if ($storageType == 'sqlite') {
     // Solicitar al usuario el nombre de la base de datos SQLite
     $configuracion['Main']['storage-type'] = $storageType;
-    $configuracion['SQLite']['db'] = "archivo.sqlite";
+    $configuracion['SQLite']['db'] = 'taskdb.sqlite';
   } elseif ($storageType == 'mariadb') {
     // Solicitar al usuario las credenciales de MariaDB
     echo "Host: ";

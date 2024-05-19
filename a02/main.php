@@ -30,13 +30,14 @@ if ($configuracion['Main']['storage-type'] == "mariadb") {
 if ($configuracion['Main']['storage-type'] == "sqlite") {
   $conn = OpenConSqli();
 }
+
 function Ayuda()
 {
   $Ayuda =  "Uso: php main.php -u [Usuario] -p [Contraseña] -c [comando] -t [título] -d [descripción]\n  Comandos conocidos:\n  -c add: Agregar una nueva tarea\n  -c list: Listar todas las tareas del usuario\n  -c complete: Marcar una tarea como completada\n  -c delete: Eliminar una tarea\n  -c create: Crear un nuevo usuario\n";
   return $Ayuda;
 }
 
-$options = getopt("u:c:t:d:hn:s:e:p:i:");
+$options = getopt("u:c:t:d:hn:s:e:p:i:P:");
 
 // Validación del número de parámetros
 if ($argc < 2 || isset($options['h'])) {
@@ -105,14 +106,14 @@ switch ($command) {
     echo "\n";
     break;
   case 'create':
-    if (!isset($options['n']) || !isset($options['s']) || !isset($options['e']) || !isset($options['p'])) {
-      echo "Sintaxis incorrecta. Uso: php main.php -c create -n [Nombre] -s [Apellido] -e [Correo electrónico] -p [Contraseña]\n";
+    if (!isset($options['n']) || !isset($options['s']) || !isset($options['e']) || !isset($options['P'])) {
+      echo "Sintaxis incorrecta. Uso: php main.php -c create -n [Nombre] -s [Apellido] -e [Correo electrónico] -P [Contraseña]\n";
       exit(1);
     }
     $name = $options['n'];
     $surname = $options['s'];
     $email = $options['e'];
-    $password = $options['p'];
+    $password = $options['P'];
     echo crearUsuario($conn, $name, $surname, $email, $password);
     echo "\n";
     break;

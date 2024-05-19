@@ -1,8 +1,4 @@
 Main:
-    storage-type: mariadb
-MariaDB:
-    host: 127.0.0.1
-    db: taskdb
-    user: taskmanager
-    password: password
-    port: '3306'
+    storage-type: sqlite
+SQLite:
+    db: taskdb.sqlite
