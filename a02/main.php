@@ -122,4 +122,3 @@ switch ($command) {
     break;
 }
 
-die();
